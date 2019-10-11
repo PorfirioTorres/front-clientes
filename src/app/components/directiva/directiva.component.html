@@ -1,0 +1,9 @@
+ <div class="container" >
+   <button class="btn btn-primary my-3" (click)="mostrar = !mostrar">{{mostrar? 'Ocultar':'Mostrar'}}</button>
+    <div class="card">
+      <div class="card-header" >Listado de cursos</div>
+        <ul class="list-group" *ngIf="mostrar">
+          <li *ngFor="let item of cursos" class="list-group-item">{{item}}</li>
+        </ul>
+    </div>
+  </div>

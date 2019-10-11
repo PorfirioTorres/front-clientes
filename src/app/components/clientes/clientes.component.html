@@ -1,0 +1,43 @@
+
+  <app-perfil-cliente *ngIf="clienteSeleccionado" [cliente]="clienteSeleccionado"></app-perfil-cliente>
+    <div class="card bg-light mb-3">
+      <div class="card-header">Clientes</div>
+      <div class="card-body">
+        <h5 class="card-title">Listado de clientes</h5>
+        <div class="my-2 text-left">
+          <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']" >
+            Crear cliente
+          </button>
+        </div>
+        <div *ngIf="clientes?.length == 0" class="alert alert-info">
+          No se encontraron registros en la BD.
+        </div>
+        <table class="table table-bordered table-striped" *ngIf="clientes?.length > 0">
+          <thead>
+            <tr>
+              <th *ngIf="authService.hasRole('ROLE_USER')">Id</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Email</th>
+              <th>Fecha</th>
+              <th *ngIf="authService.hasRole('ROLE_ADMIN')">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cliente of clientes">
+              <td *ngIf="authService.hasRole('ROLE_USER')"><button (click)="abrirModal(cliente)" class="btn btn-primary btn-sm">{{cliente.id}}</button></td>
+              <td>{{cliente.nombre}}</td>
+              <td>{{cliente.apellido}}</td>
+              <td>{{cliente.email}}</td>
+              <td>{{cliente.createAt | date:"EEEE dd, MMMM yyyy"}}</td>
+              <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+                <button class="btn btn-success btn-sm" [routerLink]="['/clientes/form', cliente.id]">Editar</button>
+                <button class="btn btn-danger btn-sm" (click)="delete(cliente)">Eliminar</button>
+              </td>
+              <!--{{cliente.foto}}-->
+            </tr>
+          </tbody>
+        </table>
+        <app-paginator-nav *ngIf="paginador" [paginador]="paginador"></app-paginator-nav>
+      </div>
+    </div>
