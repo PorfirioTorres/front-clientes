@@ -44,13 +44,13 @@ export class FormComponent implements OnInit {
 
   public create(): void {
     this.clienteService.create(this.cliente).subscribe(
-      response => { // exito al crear o errores de lado de la bd
+      response => {
         this._router.navigate(['/clientes']);
         swal('Cliente creado',
         `${response.mensaje} ${response.cliente.nombre} ${response.cliente.apellido} `,
         'success');
       },
-      err => { // error de formato en la info enviada
+      err => {
         console.log('Estatus: ' + err.status);
         this.errores = err.error.errores as string[];
       }
@@ -59,13 +59,13 @@ export class FormComponent implements OnInit {
 
   public update(): void {
     this.clienteService.update(this.cliente).subscribe(
-      result => {// exito al actualizar o errores del lado de la bd
+      result => {
         this._router.navigate(['/clientes']);
         swal('Cliente actualizado',
         `${result.mensaje} ${result.cliente.nombre} ${result.cliente.apellido}`,
         'success');
       },
-      err => { // error de formato en la info enviada
+      err => {
         console.log('Estatus: ' + err.status);
         this.errores = err.error.errores as string[];
       }
