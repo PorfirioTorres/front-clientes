@@ -5,7 +5,6 @@ import { of, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { map, catchError } from 'rxjs/operators';
-// import swal from 'sweetalert2';
 import { FooterComponent } from '../components/footer/footer.component';
 import { AuthService } from './auth.service';
 
@@ -69,7 +68,6 @@ export class ClienteService {
                     if (e.error.mensaje) {
                         console.log(e.error.mensaje);
                     }
-                    // swal (e.error.mensaje, e.error.error, 'error');
                     return throwError(e);
                 }
             })
@@ -83,7 +81,6 @@ export class ClienteService {
                 if (e.error.mensaje) {
                     console.log(e.error.mensaje);
                 }
-                // swal (e.error.mensaje, e.error.error, 'error');
                 return throwError(e);
             })
         );
