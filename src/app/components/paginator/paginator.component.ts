@@ -5,8 +5,6 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
   templateUrl: './paginator.component.html'
 })
 export class PaginatorComponent implements OnInit, OnChanges {
-  // Input() indica que la variable con esta anotacion sera inyectada (recibira su valor)
-  // desde otro componente
   @Input() paginador: any;
   paginas: number[];
   desde: number;
